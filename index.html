@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09021c">
+  <meta name="description" content="PINTARBOLA VIP">
+
+  <link rel="icon" type="image/png" href="https://blogger.googleusercontent.com/img/a/AVvXsEi5408u_7AApxlmPjMLC2fVYRqhbPJCR_CADw8SdfG2ylzd2_Y_r5u1eMu7PMJhjlDJgKQ4yQXSqAPf4TGW87akPww87jK9pj8fLXmu0vIHyCKNB_3J72ivfU7o_vsCFlxLrM7qURzzvf5wZDFB481mFA8uwSHd0SriQnXqko3mrqQ1fplB-_P56e1zhDwb">
+  <title>PINTARBOLA — UPGRADE AKUN FITUR VIP</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* BACKGROUND MEWAH & EFEK CAHAYA VIP */
+    body {
+      background: radial-gradient(circle at 50% 20%, #1e0b3d 0%, #09021c 60%, #03000a 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* BINTANG & LIGHTING KELAP KELIP BACKGROUND */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #35d97b, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffda6a, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 80px 120px, #35d97b, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 250px 190px, #ffda6a, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 310px 80px, #35d97b, rgba(0,0,0,0));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ==========================================
+       1. BACKGROUND CAHAYA MELAYANG (GLOWING ORBS)
+       ========================================== */
+    .bg-light-container {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .light-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.5;
+      animation: floatBg 8s infinite ease-in-out alternate;
+    }
+
+    .orb-1 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #35d97b, transparent);
+      top: -50px;
+      left: -50px;
+      animation-duration: 9s;
+    }
+
+    .orb-2 {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, #ffda6a, transparent);
+      bottom: -80px;
+      right: -80px;
+      animation-duration: 11s;
+      animation-delay: -3s;
+    }
+
+    .orb-3 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, #7b2cbf, transparent);
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 7s;
+      animation-delay: -5s;
+    }
+
+    @keyframes floatBg {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(80px, -50px) scale(1.25);
+      }
+      100% {
+        transform: translate(-60px, 60px) scale(0.85);
+      }
+    }
+
+    .app {
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* SHELL BOX DENGAN KELAP KELIP NEON BORDER VIP */
+    .game-shell {
+      background: rgba(18, 10, 41, 0.85);
+      backdrop-filter: blur(10px);
+      border: 2px solid #35d97b;
+      border-radius: 20px;
+      padding: 30px 20px;
+      position: relative;
+      animation: vipBorderFlicker 2s infinite alternate;
+    }
+
+    @keyframes vipBorderFlicker {
+      0% {
+        box-shadow: 0 0 15px rgba(53, 217, 123, 0.4), inset 0 0 15px rgba(53, 217, 123, 0.2);
+        border-color: #35d97b;
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 218, 106, 0.8), inset 0 0 20px rgba(255, 218, 106, 0.4);
+        border-color: #6cff52;
+      }
+      100% {
+        box-shadow: 0 0 25px rgba(53, 217, 123, 0.7), inset 0 0 10px rgba(53, 217, 123, 0.3);
+        border-color: #35d97b;
+      }
+    }
+
+    .topbar {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .topbar .logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    }
+
+    /* ==========================================
+       2. EFEK LAMPU KELAP KELIP TEKS (NEON GLOW)
+       ========================================== */
+    .brand-copy small {
+      color: #baff66;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      display: inline-block;
+      animation: neonTextBlink 2.5s infinite alternate;
+    }
+
+    @keyframes neonTextBlink {
+      0% {
+        color: #45f76e;
+        text-shadow: 
+          0 0 5px #45f76e,
+          0 0 10px #45f76e,
+          0 0 20px #45f76e,
+          0 0 40px #45f76e;
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.4;
+        text-shadow: none;
+      }
+      100% {
+        color: #35d97b;
+        text-shadow: 
+          0 0 5px #35d97b,
+          0 0 15px #35d97b,
+          0 0 30px #35d97b,
+          0 0 60px #35d97b;
+        opacity: 1;
+      }
+    }
+
+    .brand-copy p {
+      font-size: 14px;
+      color: #a0a0c0;
+      margin-top: 4px;
+    }
+
+    /* CONTAINER 3 TOMBOL UTAMA HOME */
+    .action-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .btn-main {
+      width: 100%;
+      padding: 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.1s, box-shadow 0.2s;
+      border: none;
+      display: block;
+    }
+
+    .btn-main:active {
+      transform: scale(0.98);
+    }
+
+    /* KELAP KELIP SCATTER */
+    .btn-scatter {
+      background: linear-gradient(180deg, #35d97b 0%, #ffffff 100%);
+      color: #000;
+      border: 2px solid #fff;
+      animation: scatterPulse 1.5s infinite alternate;
+    }
+
+    @keyframes scatterPulse {
+      from { box-shadow: 0 0 10px rgba(255, 218, 106, 0.5); }
+      to { box-shadow: 0 0 25px rgba(255, 218, 106, 0.95), 0 0 10px #ffffff; }
+    }
+
+    /* KELAP KELIP PETIR */
+    .btn-petir {
+      background: linear-gradient(180deg, #35d97b 0%, #10b95c 55%, #087c3c 100%);
+      color: #fff;
+      border: 2px solid #9affbd;
+      animation: petirPulse 1.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes petirPulse {
+      from { box-shadow: 0 0 10px rgba(53, 217, 123, 0.5); }
+      to { box-shadow: 0 0 25px rgba(53, 217, 123, 0.95), 0 0 10px #9affbd; }
+    }
+
+    .btn-login {
+      background: #180d38;
+      color: #fff;
+      border: 2px solid #4a3485;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #a0a0c0;
+      margin-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 12px;
+    }
+
+    /* MODAL POPUP MEWAH VIP */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 15px;
+    }
+
+    .modal-card {
+      background: #120a29;
+      border: 2px solid #35d97b;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 30px rgba(53, 217, 123, 0.6);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-card h2 {
+      font-size: 18px;
+      color: #35d97b;
+      margin-bottom: 12px;
+      text-shadow: 0 0 10px rgba(53, 217, 123, 0.5);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .field-group {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: bold;
+      color: #9affbd;
+      margin-bottom: 5px;
+    }
+
+    .field-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #35d97b;
+      background: #050110;
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      outline: none;
+      text-align: center;
+      box-shadow: inset 0 0 8px rgba(53, 217, 123, 0.2);
+    }
+
+    .selection-section {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(154, 255, 189, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .selection-section.locked {
+      opacity: 0.4;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
+
+    .selection-section h3 {
+      font-size: 11px;
+      color: #ffda6a;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .sub-label {
+      font-size: 10px;
+      color: #a0a0c0;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    /* GRID LUCKY BOX */
+    .lucky-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .lucky-box {
+      background: #180d38;
+      border: 2px dashed #35d97b;
+      border-radius: 8px;
+      padding: 10px 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lucky-box:hover {
+      background: #231352;
+      border-color: #9affbd;
+      box-shadow: 0 0 10px rgba(154, 255, 189, 0.5);
+    }
+
+    .lucky-box .box-icon {
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+
+    .lucky-box .box-text {
+      font-size: 10px;
+      font-weight: 800;
+      color: #d1c7f0;
+      display: block;
+    }
+
+    .lucky-box.shaking {
+      animation: boxShake 0.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes boxShake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-6deg); }
+      75% { transform: rotate(6deg); }
+    }
+
+    .lucky-box.opened {
+      background: linear-gradient(180deg, #ffda6a 0%, #d89600 100%);
+      border: 2px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 218, 106, 0.9);
+      pointer-events: none;
+    }
+
+    .lucky-box.opened .box-text {
+      color: #000;
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .lucky-box.disabled {
+      opacity: 0.35;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
+
+    /* GRID GAME & GAMBAR */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .game-card {
+      background: #180d38;
+      border: 2px solid #35d97b;
+      border-radius: 10px;
+      padding: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
+
+    .game-card:hover {
+      border-color: #ffda6a;
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(255, 218, 106, 0.6);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    .game-card span {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .game-card.active {
+      border-color: #ffda6a;
+      background: #35d97b;
+      box-shadow: 0 0 15px rgba(53, 217, 123, 0.9);
+    }
+
+    .game-card.active span {
+      color: #000;
+    }
+
+    .cek-premium {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #9affbd;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #35d97b 0%, #087c3c 100%);
+      color: #fff;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(53, 217, 123, 0.4);
+      opacity: 0.5;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .cek-premium.active-btn {
+      opacity: 1;
+      pointer-events: auto;
+      animation: submitGlow 1.2s infinite alternate;
+    }
+
+    @keyframes submitGlow {
+      from { box-shadow: 0 0 10px rgba(53, 217, 123, 0.5); }
+      to { box-shadow: 0 0 20px rgba(53, 217, 123, 1), 0 0 10px #ffffff; }
+    }
+
+    .loading-card {
+      background: #120a29;
+      border: 2px solid #35d97b;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+      box-shadow: 0 0 25px rgba(53, 217, 123, 0.6);
+    }
+
+    .loader {
+      width: 36px;
+      height: 36px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #35d97b;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .register {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background: linear-gradient(180deg, #35d97b 0%, #087c3c 100%);
+      color: #fff;
+      font-weight: 900;
+      text-decoration: none;
+      border-radius: 999px;
+      border: 2px solid #9affbd;
+      box-shadow: 0 0 15px rgba(53, 217, 123, 0.8);
+      animation: submitGlow 1.2s infinite alternate;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ELEMENT BACKGROUND CAHAYA MELAYANG -->
+  <div class="bg-light-container">
+    <div class="light-orb orb-1"></div>
+    <div class="light-orb orb-2"></div>
+    <div class="light-orb orb-3"></div>
+  </div>
+
+  <main class="app">
+    <section class="game-shell">
+
+      <header class="topbar">
+        <img src="https://images.linkcdn.cloud/V2/505/logo/logo-871244902.png" class="logo" alt="Logo PINTARBOLA">
+        <div class="brand-copy">
+          <small>UPGRADE ID PRO AKUN 💎VVIP</small>
+          <p>UPGRADE AKUN KAMU SEKARANG CLAIM PETIR X SCATTER!</p>
+        </div>
+      </header>
+
+      <!-- HOME DENGAN 3 TOMBOL UTAMA -->
+      <div class="action-container">
+        <button id="claimScatterBtn" class="btn-main btn-scatter" type="button">
+          🎰 CLAIM SCATTER
+        </button>
+
+        <button id="claimPetirBtn" class="btn-main btn-petir" type="button">
+          ⚡ CLAIM PETIR
+        </button>
+
+        <a href="https://pintarbola01.com/" target="_blank" rel="noopener noreferrer" class="btn-main btn-login">
+          🌐 LOGIN SEKARANG
+        </a>
+      </div>
+
+      <footer class="footer">
+        <span>@ PINTARBOLA 2026</span>
+        <span>⏫ UPGRADE AKUN</span>
+      </footer>
+
+    </section>
+  </main>
+
+  <!-- ================= MODAL 1: CLAIM SCATTER ================= -->
+  <div id="claimModalScatter" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close closeModal" type="button">✕</button>
+      <h2>KLAIM SCATTER GRATIS 🎰</h2>
+
+      <div class="field-group">
+        <label for="useridScatter">Masukkan USER ID :</label>
+        <input type="text" id="useridScatter" placeholder="Masukkan USER ID Anda..." autocomplete="off">
+      </div>
+
+      <!-- TAHAP 1 SCATTER -->
+      <div class="selection-section" id="secBoxScatter">
+        <h3>1. AMBIL SCATTER GRATIS</h3>
+        <p class="sub-label">Klik salah satu kotak di bawah</p>
+        <div class="lucky-grid">
+          <div class="lucky-box">
+            <div class="box-icon">🎰</div>
+            <span class="box-text">PILIH</span>
+          </div>
+          <div class="lucky-box">
+            <div class="box-icon">🎰</div>
+            <span class="box-text">PILIH</span>
+          </div>
+          <div class="lucky-box">
+            <div class="box-icon">🎰</div>
+            <span class="box-text">PILIH</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAHAP 2 SCATTER -->
+      <div class="selection-section locked" id="secGameScatter">
+        <h3>2. PILIH GAME UNTUK CLAIM SCATTER GRATIS</h3>
+        <p class="sub-label gameSubLabel">Buka Lucky Box terlebih dahulu</p>
+        <div class="game-grid">
+          <div class="game-card" data-game="MAHJONG WINS 3 - BLACK SCATTER">
+            <img src="https://i.imgur.com/p1CDeN5.png" alt="MAHJONG WINS 3 - BLACK SCATTER">
+            <span>MAHJONG WINS 3 - BLACK SCATTER</span>
+          </div>
+          <div class="game-card" data-game="MAHJONG WAYS 2">
+            <img src="https://i.ibb.co/DD7sgY4B/image.png" alt="MAHJONG WAYS 2">
+            <span>MAHJONG WAYS 2</span>
+          </div>
+          <div class="game-card" data-game="MAHJONG WAYS">
+            <img src="https://i.ibb.co/hJW7RDbx/image.png" alt="MAHJONG WAYS">
+            <span>MAHJONG WAYS</span>
+          </div>
+          <div class="game-card" data-game="GEISHA'S REVENGE">
+            <img src="https://i.ibb.co/215Cs4SX/image.png" alt="GEISHA'S REVENGE">
+            <span>GEISHA'S REVENGE</span>
+          </div>
+          <div class="game-card" data-game="WILD BOUNTY SHOWDOWN">
+            <img src="https://i.ibb.co/bjp2Bc10/image.png" alt="WILD BOUNTY SHOWDOWN">
+            <span>WILD BOUNTY SHOWDOWN</span>
+          </div>          
+          <div class="game-card" data-game="WILD BANDITO">
+            <img src="https://i.ibb.co/kZPJXS2/image.png" alt="WILD BANDITO">
+            <span>WILD BANDITO</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="submitScatterBtn" class="cek-premium" type="button">✨ MAIN SCATTER SEKARANG ✨</button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2: CLAIM PETIR ================= -->
+  <div id="claimModalPetir" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close closeModal" type="button">✕</button>
+      <h2 style="color: #ffda6a;">KLAIM PETIR GRATIS ⚡</h2>
+
+      <div class="field-group">
+        <label for="useridPetir">Masukkan USER ID :</label>
+        <input type="text" id="useridPetir" placeholder="Masukkan USER ID Anda..." autocomplete="off">
+      </div>
+
+      <!-- TAHAP 1 PETIR -->
+      <div class="selection-section" id="secBoxPetir">
+        <h3 style="color: #ffda6a;">1. AMBIL PETIR GRATIS</h3>
+        <p class="sub-label">Klik salah satu petir di bawah</p>
+        <div class="lucky-grid">
+          <div class="lucky-box">
+            <div class="box-icon">⚡</div>
+            <span class="box-text">PILIH</span>
+          </div>
+          <div class="lucky-box">
+            <div class="box-icon">⚡</div>
+            <span class="box-text">PILIH</span>
+          </div>
+          <div class="lucky-box">
+            <div class="box-icon">⚡</div>
+            <span class="box-text">PILIH</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAHAP 2 PETIR -->
+      <div class="selection-section locked" id="secGamePetir">
+        <h3 style="color: #ffda6a;">2. PILIH GAME PETIR</h3>
+        <p class="sub-label gameSubLabel">Buka Lucky Box terlebih dahulu</p>
+        <div class="game-grid">
+          <div class="game-card" data-game="GATES OF OLYMPUS 1000">
+            <img src="https://i.ibb.co/35jFDvJN/image.png" alt="Olympus 1000" onerror="this.src='https://via.placeholder.com/100x70?text=OLYMPUS+1000'">
+            <span>GATES OF OLYMPUS 1000</span>
+          </div>
+          <div class="game-card" data-game="STARLIGHT PRINCESS 1000">
+            <img src="https://i.ibb.co/tw17CPfc/image.png" alt="Starlight 1000" onerror="this.src='https://via.placeholder.com/100x70?text=STARLIGHT+1000'">
+            <span>STARLIGHT PRINCESS 1000</span>
+          </div>
+          <div class="game-card" data-game="SWEET BONANZA 2500">
+            <img src="https://i.ibb.co/mVjTJpVV/image.png" alt="SWEET BONANZA 2500" onerror="this.src='https://via.placeholder.com/100x70?text=GATOTKACA'">
+            <span>SWEET BONANZA 2500</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="submitPetirBtn" class="cek-premium" type="button">✨ MAIN PETIR SEKARANG ✨</button>
+    </div>
+  </div>
+
+  <!-- MODAL LOADING -->
+  <div id="loadingModal" class="modal" role="dialog" aria-modal="true">
+    <div class="loading-card">
+      <div class="loader"></div>
+      <h2>MEMERIKSA AKUN...</h2>
+      <p id="loadingText" style="font-size: 12px; color: #a0a0c0; margin-top: 6px;">Mengecek USER ID...</p>
+    </div>
+  </div>
+
+  <!-- MODAL HASIL & LINK DIRECT -->
+  <div id="resultModal" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="modalClose" class="modal-close" type="button">✕</button>
+      <h2>SELAMAT VIP!</h2>
+      <div id="modalText" style="font-size: 13px; line-height: 1.6; margin: 15px 0;"></div>
+      <a href="https://pintarbola01.com/" target="_blank" rel="noopener noreferrer" class="register">MASUK KE GAME NOW →</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const scatterOptions = ['3 SCATTER GRATIS', '4 SCATTER GRATIS', '5 SCATTER GRATIS'];
+      const petirOptions = ['CLAIM X100', 'CLAIM X250', 'CLAIM X500', 'CLAIM X1000'];
+
+      const loadingModal = document.getElementById('loadingModal');
+      const loadingText = document.getElementById('loadingText');
+      const resultModal = document.getElementById('resultModal');
+      const modalText = document.getElementById('modalText');
+
+      // FUNGSI UTAMA PENGELOLAAN DUA MODAL SEPARAT
+      function setupModalLogic(btnId, modalId, optionsList, useridInputId, submitBtnId, secGameId) {
+        const triggerBtn = document.getElementById(btnId);
+        const modal = document.getElementById(modalId);
+        const submitBtn = document.getElementById(submitBtnId);
+        const useridInput = document.getElementById(useridInputId);
+        const secGame = document.getElementById(secGameId);
+        const boxes = modal.querySelectorAll('.lucky-box');
+        const gameCards = modal.querySelectorAll('.game-card');
+        const gameSubLabel = modal.querySelector('.gameSubLabel');
+
+        let selectedReward = '';
+        let selectedGame = '';
+
+        function resetModal() {
+          selectedReward = '';
+          selectedGame = '';
+          useridInput.value = '';
+          submitBtn.classList.remove('active-btn');
+          secGame.classList.add('locked');
+          gameSubLabel.innerText = 'Buka Lucky Box terlebih dahulu';
+
+          boxes.forEach(box => {
+            box.className = 'lucky-box';
+            const textEl = box.querySelector('.box-text');
+            if (textEl) textEl.innerText = 'PILIH';
+          });
+
+          gameCards.forEach(card => card.classList.remove('active'));
+        }
+
+        // Buka Modal
+        triggerBtn.addEventListener('click', () => {
+          resetModal();
+          modal.style.display = 'flex';
+        });
+
+        // Buka Box
+        boxes.forEach(box => {
+          box.addEventListener('click', function () {
+            if (selectedReward !== '') return;
+
+            this.classList.add('shaking');
+            const textEl = this.querySelector('.box-text');
+            if (textEl) textEl.innerText = 'MEMBUKA...';
+
+            setTimeout(() => {
+              this.classList.remove('shaking');
+              selectedReward = optionsList[Math.floor(Math.random() * optionsList.length)];
+
+              this.classList.add('opened');
+              if (textEl) textEl.innerText = selectedReward;
+
+              boxes.forEach(otherBox => {
+                if (otherBox !== this) otherBox.classList.add('disabled');
+              });
+
+              secGame.classList.remove('locked');
+              gameSubLabel.innerText = 'Klik salah satu game di bawah ini';
+            }, 800);
+          });
+        });
+
+        // Pilih Game
+        gameCards.forEach(card => {
+          card.addEventListener('click', () => {
+            if (selectedReward === '') return;
+
+            gameCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            selectedGame = card.getAttribute('data-game');
+            submitBtn.classList.add('active-btn');
+          });
+        });
+
+        // Submit & Proses Loading
+        submitBtn.addEventListener('click', () => {
+          const useridVal = useridInput.value.trim();
+
+          if (!useridVal) {
+            alert('Masukkan USER ID Anda terlebih dahulu!');
+            return;
+          }
+
+          modal.style.display = 'none';
+          loadingModal.style.display = 'flex';
+          loadingText.innerText = 'Mengecek USER ID VIP...';
+
+          setTimeout(() => {
+            loadingText.innerText = 'Menyuntikkan Bonus ' + selectedReward + '...';
+          }, 1200);
+
+          setTimeout(() => {
+            loadingText.innerText = 'Menghubungkan Server VIP ' + selectedGame + '...';
+          }, 2400);
+
+          setTimeout(() => {
+            loadingModal.style.display = 'none';
+            modalText.innerHTML = `
+              USER ID: <strong>${useridVal}</strong><br>
+              BONUS: <strong style="color:#ffda6a;">${selectedReward}</strong><br>
+              GAME: <strong style="color:#35d97b;">${selectedGame}</strong><br><br>
+              AKUN BISA LANGSUNG DIMAINKAN!<br>
+              KLIK TOMBOL DI BAWAH UNTUK MASUK KE GAME.
+            `;
+            resultModal.style.display = 'flex';
+          }, 3600);
+        });
+      }
+
+      // INIT MODAL SCATTER DAN MODAL PETIR
+      setupModalLogic('claimScatterBtn', 'claimModalScatter', scatterOptions, 'useridScatter', 'submitScatterBtn', 'secGameScatter');
+      setupModalLogic('claimPetirBtn', 'claimModalPetir', petirOptions, 'useridPetir', 'submitPetirBtn', 'secGamePetir');
+
+      // EVENT TUPUP ALL MODALS
+      document.querySelectorAll('.closeModal').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+          document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        });
+      });
+
+      document.getElementById('modalClose').addEventListener('click', () => {
+        resultModal.style.display = 'none';
+      });
+    });
+}
+
+<!-- SECURITY SYSTEM SCRIPTS -->
+<script>
+  // 1. BLOKIR KLIK KANAN
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 2. BLOKIR SHORTCUT KEYBOARD (F12, Ctrl+U, Ctrl+Shift+I/J/C, Ctrl+S)
+  window.addEventListener('keydown', function (e) {
+    const key = e.key ? e.key.toLowerCase() : '';
+    const code = e.keyCode || e.which;
+
+    // F12 (code 123)
+    if (code === 123 || key === 'f12') {
+      e.preventDefault();
+      e.stopPropagation();
+      triggerAccessDenied();
+      return false;
+    }
+
+    // Ctrl + U (View Source)
+    if ((e.ctrlKey || e.metaKey) && (key === 'u' || code === 85)) {
+      e.preventDefault();
+      e.stopPropagation();
+      triggerAccessDenied();
+      return false;
+    }
+
+    // Ctrl + Shift + I / J / C (DevTools)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (key === 'i' || key === 'j' || key === 'c' || code === 73 || code === 74 || code === 67)) {
+      e.preventDefault();
+      e.stopPropagation();
+      triggerAccessDenied();
+      return false;
+    }
+
+    // Ctrl + S (Save Page)
+    if ((e.ctrlKey || e.metaKey) && (key === 's' || code === 83)) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  }, true); // Event capture mode (menangkap shortcut lebih cepat dari browser)
+
+  // 3. FUNGSI TAMPILAN ACCESS DENIED
+  function triggerAccessDenied() {
+    document.body.innerHTML = `
+      <div style="display:flex; justify-content:center; align-items:center; height:100vh; background:#03000a; color:#ff4d4d; font-family:sans-serif; text-align:center;">
+        <div>
+          <h1 style="font-size:36px; margin-bottom:10px;">403 - ACCESS DENIED</h1>
+          <p style="color:#a0a0c0;">Aktivitas inspeksi elemen terdeteksi.</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. TRAP DETEKSI DEVTOOLS (Mendeteksi saat DevTools dibuka via Menu Browser / F12)
+  const element = new Image();
+  Object.defineProperty(element, 'id', {
+    get: function () {
+      // Properti ini hanya dipanggil oleh browser jika Console/DevTools terbuka
+      triggerAccessDenied();
+    }
+  });
+
+  setInterval(function () {
+    console.log('%c', element);
+    console.clear();
+  }, 1000);
+</script>
+  <!-- Start of  Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=1f7b1b1f-ba1a-4b16-a2cc-06a3bf2e4fd1"> </script>
+<!-- End of  Zendesk Widget script -->
+</body>
+</html>
