@@ -46,9 +46,7 @@
       z-index: 1;
     }
 
-    /* ==========================================
-       1. BACKGROUND CAHAYA MELAYANG (GLOWING ORBS)
-       ========================================== */
+    /* BACKGROUND CAHAYA MELAYANG (GLOWING ORBS) */
     .bg-light-container {
       position: fixed;
       width: 100vw;
@@ -99,15 +97,9 @@
     }
 
     @keyframes floatBg {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(80px, -50px) scale(1.25);
-      }
-      100% {
-        transform: translate(-60px, 60px) scale(0.85);
-      }
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(80px, -50px) scale(1.25); }
+      100% { transform: translate(-60px, 60px) scale(0.85); }
     }
 
     .app {
@@ -155,9 +147,7 @@
       filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
     }
 
-    /* ==========================================
-       2. EFEK LAMPU KELAP KELIP TEKS (NEON GLOW)
-       ========================================== */
+    /* EFEK LAMPU KELAP KELIP TEKS (NEON GLOW) */
     .brand-copy small {
       color: #39ff14;
       font-size: 13px;
@@ -170,11 +160,7 @@
     @keyframes neonTextBlink {
       0% {
         color: #39ff14;
-        text-shadow: 
-          0 0 5px #39ff14,
-          0 0 10px #39ff14,
-          0 0 20px #39ff14,
-          0 0 40px #39ff14;
+        text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14;
         opacity: 1;
       }
       50% {
@@ -183,11 +169,7 @@
       }
       100% {
         color: #35d97b;
-        text-shadow: 
-          0 0 5px #35d97b,
-          0 0 15px #35d97b,
-          0 0 30px #35d97b,
-          0 0 60px #35d97b;
+        text-shadow: 0 0 5px #35d97b, 0 0 15px #35d97b, 0 0 30px #35d97b, 0 0 60px #35d97b;
         opacity: 1;
       }
     }
@@ -225,7 +207,6 @@
       transform: scale(0.98);
     }
 
-    /* KELAP KELIP SCATTER */
     .btn-scatter {
       background: linear-gradient(180deg, #39ff14 0%, #15b800 100%);
       color: #000;
@@ -238,7 +219,6 @@
       to { box-shadow: 0 0 25px rgba(57, 255, 20, 0.95), 0 0 10px #ffffff; }
     }
 
-    /* KELAP KELIP PETIR */
     .btn-petir {
       background: linear-gradient(180deg, #35d97b 0%, #10b95c 55%, #087c3c 100%);
       color: #fff;
@@ -554,6 +534,19 @@
       box-shadow: 0 0 15px rgba(53, 217, 123, 0.8);
       animation: submitGlow 1.2s infinite alternate;
     }
+
+    /* STYLES DESAIN COUNTDOWN HASIL MODAL */
+    .timer-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-weight: 900;
+      color: #ff3366;
+      background: rgba(255, 51, 102, 0.15);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 51, 102, 0.4);
+    }
   </style>
 </head>
 
@@ -736,13 +729,49 @@
     <div class="modal-card">
       <button id="modalClose" class="modal-close" type="button">✕</button>
       <h2>SELAMAT AKUN SUDAH BERHASIL DI UPGRADE!</h2>
-      <div id="modalText" style="font-size: 13px; line-height: 1.6; margin: 15px 0;"></div>
+      <div id="modalText" style="font-size: 13px; line-height: 1.8; margin: 15px 0;"></div>
       <a href="https://pintarbola01.com/" target="_blank" rel="noopener noreferrer" class="register">MASUK KE GAME NOW →</a>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      let countdownTimerInterval = null;
+
+      // FUNGSI HITUNG MUNDUR JAM DI DALAM MODAL
+      function startModalCountdown(durationInSeconds) {
+        if (countdownTimerInterval) clearInterval(countdownTimerInterval);
+        
+        let timer = durationInSeconds;
+
+        function updateDisplay() {
+          const hours = Math.floor(timer / 3600);
+          const minutes = Math.floor((timer % 3600) / 60);
+          const seconds = timer % 60;
+
+          const hoursStr = hours.toString().padStart(2, '0');
+          const minutesStr = minutes.toString().padStart(2, '0');
+          const secondsStr = seconds.toString().padStart(2, '0');
+
+          const timerEl = document.getElementById('modalTimer');
+          if (timerEl) {
+            timerEl.textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
+          }
+        }
+
+        updateDisplay();
+
+        countdownTimerInterval = setInterval(() => {
+          timer--;
+          if (timer < 0) {
+            clearInterval(countdownTimerInterval);
+            return;
+          }
+          updateDisplay();
+        }, 1000);
+      }
+
+      // LOGIKA UTAMA DUA MODAL
       const scatterOptions = ['3 SCATTER GRATIS', '4 SCATTER GRATIS', '5 SCATTER GRATIS'];
       const petirOptions = ['CLAIM X100', 'CLAIM X250', 'CLAIM X500', 'CLAIM X1000'];
 
@@ -751,7 +780,6 @@
       const resultModal = document.getElementById('resultModal');
       const modalText = document.getElementById('modalText');
 
-      // FUNGSI UTAMA PENGELOLAAN DUA MODAL SEPARAT
       function setupModalLogic(btnId, modalId, optionsList, useridInputId, submitBtnId, secGameId) {
         const triggerBtn = document.getElementById(btnId);
         const modal = document.getElementById(modalId);
@@ -851,12 +879,18 @@
             loadingModal.style.display = 'none';
             modalText.innerHTML = `
               USER ID: <strong>${useridVal}</strong><br>
-              BONUS: <strong style="color:#39ff14;">${selectedReward}</strong><br>
+              UPGRADE: <strong style="color:#39ff14;">${selectedReward}</strong><br>
               GAME: <strong style="color:#35d97b;">${selectedGame}</strong><br><br>
-              AKUN BISA LANGSUNG DIMAINKAN!<br>
+              <div style="margin: 8px 0; font-size: 12px; color: #ffeb3b;">
+                Waktu terus berjalan<span class="timer-inline"><span id="modalTimer">06:00:00</span></span> pastikan Anda memulai sekarang sebelum kesempatan ini berakhir
+              </div>
+              <strong>AKUN BISA LANGSUNG DIMAINKAN!</strong><br>
               KLIK TOMBOL DI BAWAH UNTUK MASUK KE GAME.
             `;
             resultModal.style.display = 'flex';
+            
+            // Jalankan countdown 6 Jam (21600 detik)
+            startModalCountdown(21600);
           }, 3600);
         });
       }
@@ -865,7 +899,7 @@
       setupModalLogic('claimScatterBtn', 'claimModalScatter', scatterOptions, 'useridScatter', 'submitScatterBtn', 'secGameScatter');
       setupModalLogic('claimPetirBtn', 'claimModalPetir', petirOptions, 'useridPetir', 'submitPetirBtn', 'secGamePetir');
 
-      // EVENT TUPUP ALL MODALS
+      // EVENT TUTUP MODAL
       document.querySelectorAll('.closeModal').forEach(closeBtn => {
         closeBtn.addEventListener('click', () => {
           document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
@@ -874,11 +908,13 @@
 
       document.getElementById('modalClose').addEventListener('click', () => {
         resultModal.style.display = 'none';
+        if (countdownTimerInterval) clearInterval(countdownTimerInterval);
       });
     });
   </script>
-  <!-- Start of  Zendesk Widget script -->
-<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=1f7b1b1f-ba1a-4b16-a2cc-06a3bf2e4fd1"> </script>
-<!-- End of  Zendesk Widget script -->
+
+  <!-- Start of Zendesk Widget script -->
+  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=1f7b1b1f-ba1a-4b16-a2cc-06a3bf2e4fd1"> </script>
+  <!-- End of Zendesk Widget script -->
 </body>
 </html>
